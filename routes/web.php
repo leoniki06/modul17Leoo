@@ -35,7 +35,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/', [HomeController::class, 'index']);
 
+Route::get('getEmployees', [EmployeeController::class,
+'getData'])->name('employees.getData');
+
+Route::get('exportExcel', [EmployeeController::class,
+'exportExcel'])->name('employees.exportExcel');
+
+Route::get('exportPdf', [EmployeeController::class,
+'exportPdf'])->name('employees.exportPdf');
 
 Route::get('/local-disk', function() {
     Storage::disk('local')->put('local-example.txt', 'This is local example content');

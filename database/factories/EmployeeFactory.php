@@ -1,42 +1,28 @@
 <?php
 
-namespace Database\Seeders;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use App\Models\Employee;
+namespace Database\Factories;
 
-class EmployeeSeeder extends Seeder
+use App\Models\Position;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Employee>
+ */
+class EmployeeFactory extends Factory
 {
     /**
-     * Run the database seeds.
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
      */
-    public function run(): void
+    public function definition(): array
     {
-        // DB::table('employees')->insert([
-        //     [
-        //         'firstname' => 'Purnama',
-        //         'lastname' => 'Anaking',
-        //         'email'=> 'purnama.anaking@gmail.com',
-        //         'age' => 20,
-        //         'position_id' => 1
-        //     ],
-        //     [
-        //         'firstname' => 'Adzanil',
-        //         'lastname' => 'Rachmadhi',
-        //         'email'=> 'adzanil.rachmadhi@gmail.com',
-        //         'age' => 25,
-        //         'position_id' => 2
-        //     ],
-        //     [
-        //         'firstname' => 'Berlian',
-        //         'lastname' => 'Rahmy',
-        //         'email'=> 'berlian.rahmy@gmail.com',
-        //         'age' => 23,
-        //         'position_id' => 3
-        //     ],
-        // ]);
-
-        Employee::factory()->count(10)->create();
+        return [
+            'firstname' => fake()->firstName(),
+            'lastname' => fake()->lastName(),
+            'email' => fake()->email(),
+            'age' => fake()->numberBetween(25, 50),
+            'position_id' => Position::factory()
+        ];
     }
 }
